@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% load static%} 
-{% block title %}  
+{% load static%}
+{% block title %}
 Home
 {% endblock %}
 
@@ -25,18 +25,18 @@ Home
 
 <div class="container">
     <div class="row">
-        {%  for i in '12345678'%}
+        {%  for product in products %}
         <div class="col-9 mx-auto col-md col-lg-3">
             <div class="card mb-5" style="border-color: transparent;">
                 <div class="py-4">
-                    <img src="{% static 'img/product-1.png' %}" alt="" class="card-img-top">
+                    <img src="{{ product.image.url }}" alt="{{product.name}}" class="card-img-top">
                 </div>
                 <div style="background: transparent; border-color: transparent;"class="card-footer d-flex justify-content-between">
                     <p class="font-weight-bold mb-o">
-                       A Products 
+                       {{product.name}}
                     </p>
                     <h5 class="text-info font-italic mb-0">
-                      <span class="mr-1">$</span>499  
+                      <span class="mr-1">$</span>{{product.price}}
                     </h5>
                 </div>
             </div>
