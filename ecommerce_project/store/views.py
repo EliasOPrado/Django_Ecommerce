@@ -75,8 +75,66 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
         try:
             token = request.POST['stripeToken']
             email = request.POST['stripeEmail']
-            customer = stripe.Customer.create(email=email, source = token)
-            charge = stripe.Charge.create(amount=stripe_total, currency = 'usd', description= description, customer=customer.id)
+            billingName = request.POST['stripeBillingName']
+            billingAddress1 = request.POST['stripeBillingAddressLine1']
+            billingCity = request.POST['stripeBillingAddressCity']
+            billingPostcode = request.POST['stripeBillingAddressZip']
+            billingCountry = request.POST['stripeBillingAddressCountryCode']
+            shippingName = request.POST['stripeShippingName']
+            shippingAddress1 = request.POST['stripeShippingAddressLine1']
+            shippingCity = request.POST['stripeShippingAddressCity']
+            shippingPostCode = request.POST['stripeShippingAddressZip']
+            billingCountry = request.POST['stripeShippingAddressCountryCode']
+
+            customer = stripe.Customer.create(
+                email=email,
+                source = token
+            )
+            charge = stripe.Charge.create(
+                amount=stripe_total,
+                currency = 'usd',
+                description= description,
+                customer=customer.id
+            )
+            #creating the order
+            try:
+                order_detail = Order.objects.create(
+                    token = token,
+                    total = total,
+                    emailAdress = email,
+                    billingName = BillingName,
+                    billingAddress1 = BillingAddressLine1,
+                    billingCity = BillingAddressCity,
+                    billingPostcode = BillingAddressZip,
+                    billingCountry = BillingAddressCountryCode,
+                    shippingName = ShippingName,
+                    shippingAddress1 = ShippingAddressLine1,
+                    shippingCity = ShippingAddressCity,
+                    shippingPostCode = ShippingAddressZip,
+                    shippingCountry = ShippingAddressCountryCode,
+                )
+                order_detail.save()
+                for order_item in cart_item:
+                    or_item = OrderItem.objects.create(
+                            product = order_item.product.name,
+                            quantity = order_item.quantity,
+                            price = order_item.product.price,
+                            order = order_details
+                        )
+                    or_item.save()
+
+                    #reduce stock in the DB
+                    products = Product.objects.get(id=order_item.product.id)
+                    products.stock = int(order_item.product.stock - order_item.quantity)
+                    product.save()
+                    order_item.delete()
+
+                    #print a message when the order is created
+                    print('the order has been created')
+                return redirect('home')
+            except ObjectDoesNotExist:
+                pass
+
         except stripe.error.CardError as e:
             return False, e
     return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter, data_key = data_key, stripe_total=stripe_total, description=description))
