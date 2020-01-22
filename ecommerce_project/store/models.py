@@ -78,7 +78,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     token = models.CharField(max_length=250, unique=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='USD Order Total')
-    emailAdress = models.EmailField(max_length=250, blank=True, verbose_name='Email Adress')
+    emailAddress = models.EmailField(max_length=250, blank=True, verbose_name='Email Address')
     created = models.DateTimeField(auto_now_add=True)
     billingName = models.CharField(max_length=250, blank=True)
     billingAddress1 = models.CharField(max_length=250, blank=True)
@@ -88,7 +88,7 @@ class Order(models.Model):
     shippingName = models.CharField(max_length=250, blank=True)
     shippingAddress1 = models.CharField(max_length=250, blank=True)
     shippingCity = models.CharField(max_length=250, blank=True)
-    shippingPostCode= models.CharField(max_length=250, blank=True)
+    shippingPostcode= models.CharField(max_length=250, blank=True)
     shippingCountry = models.CharField(max_length=250, blank=True)
 
     class Meta:
