@@ -23,3 +23,9 @@ a.text-white{
     text-transform: uppercase;
     letter-spacing: 2em;
 }
+
+.errorlist li{
+  color: red;
+  font-weight: bold;
+  
+}

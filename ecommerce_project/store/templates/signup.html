@@ -6,13 +6,14 @@ Create a New Account
 
 {% block content %}
 <div>
+  {% if not form.is_valid %}
   <div class="mix-auto">
     <br>
     <h1 class="product_title text-center">
       Create a new account
     </h1>
     <br>
-    <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-dark">
+    <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
       <br>
       <p>Enter the following information to create a new account</p>
       <form action="post">
