@@ -27,5 +27,8 @@ a.text-white{
 .errorlist li{
   color: red;
   font-weight: bold;
-  
+}
+
+.custom_div{
+  margin-bottom: 20px;
 }

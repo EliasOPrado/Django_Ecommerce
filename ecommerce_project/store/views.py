@@ -6,6 +6,8 @@ import stripe
 from django.conf import settings
 from django.contrib.auth.models import Group, User
 from .forms import SignUpForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
@@ -175,3 +177,17 @@ def signupView(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def signinView(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(user=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                return redirect('signup')
+            return render(request, 'signin.html', {'form': form})
