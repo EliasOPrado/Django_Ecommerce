@@ -131,3 +131,4 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_obU50Png3IKF7Sp3gO3Ev25R'
 STRIPE_SECRETE_KEY = 'sk_test_GKUn2GGg7kzBh1YlnnW9fC6p'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+django_heroku.settings(locals())
