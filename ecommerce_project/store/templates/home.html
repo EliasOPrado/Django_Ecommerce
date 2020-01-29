@@ -26,13 +26,13 @@ Home
 <div class="container">
     <div class="row">
         {%  for product in products %}
-        <div class="col-9 mx-auto col-md col-lg-3">
+        <div class="col-9 mx-auto col-md col-lg-3 here">
             <div class="card mb-5" style="border-color: transparent;">
                 <div class="py-4">
                   <a href="{{product.get_url}}">
                     <img src="{{ product.image.url }}" alt="{{product.name}}" class="card-img-top">
+                    </a>
                 </div>
-                  </a>
                 <div style="background: transparent; border-color: transparent;"class="card-footer d-flex justify-content-between">
                     <p class="font-weight-bold mb-o">
                        {{product.name}}
