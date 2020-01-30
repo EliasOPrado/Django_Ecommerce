@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-#ßimport django_heroku
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -132,4 +132,4 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_obU50Png3IKF7Sp3gO3Ev25R'
 STRIPE_SECRETE_KEY = 'sk_test_GKUn2GGg7kzBh1YlnnW9fC6p'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
