@@ -26,7 +26,7 @@ SECRET_KEY = '+52*=m!ls*vf2ctbn0m-1r&4n%4uqp@7mifl6lz7h(ut+xt1+p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [‘0.0.0.0’, ‘localhost’, 'https://the-ecommerce-project.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
